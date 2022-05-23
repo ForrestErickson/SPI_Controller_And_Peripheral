@@ -2,6 +2,7 @@
    From: https://circuitdigest.com/microcontroller-projects/arduino-spi-communication-tutorial
    Modified by Forrest Lee Erickson 20220523
    Change to Controller/Peripheral termonology
+   Change variable names for start with lowercase. Constants to uper case.
    Peripherial Arduino Code:
 */
 
@@ -12,55 +13,55 @@
 
 //Pramoth.T
 #include<SPI.h>
-#define LEDpin 7
-#define buttonpin 2
+#define LED_PIN 7
+#define BUTTON_PIN 2
 
-volatile boolean received;
-volatile byte Peripheralreceived,Peripheralsend;
-int buttonvalue;
+volatile boolean isReceived_SPI;
+volatile byte peripheralReceived,peripheralSend;
+int buttonValue;
 int x;
 
 void setup()
 {
   Serial.begin(115200);
-  pinMode(buttonpin,INPUT);               // Setting pin 2 as INPUT
-  pinMode(LEDpin,OUTPUT);                 // Setting pin 7 as OUTPUT
+  pinMode(BUTTON_PIN,INPUT);               // Setting pin 2 as INPUT
+  pinMode(LED_PIN,OUTPUT);                 // Setting pin 7 as OUTPUT
   pinMode(MISO,OUTPUT);                   //Sets MISO as OUTPUT (Have to Send data to Controller IN 
   SPCR |= _BV(SPE);                       //Turn on SPI in Peripheral Mode
-  received = false;
+  isReceived_SPI = false;
   SPI.attachInterrupt();                  //Interuupt ON is set for SPI commnucation
 }//end setup()
 
 
 ISR (SPI_STC_vect)                        //Inerrrput routine function 
 {
-  Peripheralreceived = SPDR;         // Value received from controller if store in variable Peripheralreceived
-  received = true;                        //Sets received as True 
+  peripheralReceived = SPDR;         // Value received from controller if store in variable peripheralReceived
+  isReceived_SPI = true;                        //Sets isReceived_SPI as True 
 }//end ISR
 
 
 void loop()
-{ if(received)                            //Logic to SET LED ON OR OFF depending upon the value recerived from controller
+{ if(isReceived_SPI)                            //Logic to SET LED ON OR OFF depending upon the value recerived from controller
    {
-      if (Peripheralreceived==1) 
+      if (peripheralReceived==1) 
       {
-        digitalWrite(LEDpin,HIGH);         //Sets pin 7 as HIGH LED ON
+        digitalWrite(LED_PIN,HIGH);         //Sets pin 7 as HIGH LED ON
         Serial.println("Peripheral LED ON");
       }else
       {
-        digitalWrite(LEDpin,LOW);          //Sets pin 7 as LOW LED OFF
+        digitalWrite(LED_PIN,LOW);          //Sets pin 7 as LOW LED OFF
         Serial.println("Peripheral LED OFF");
       }
-      buttonvalue = digitalRead(buttonpin);  // Reads the status of the pin 2
-      if (buttonvalue == HIGH)               //Logic to set the value of x to send to controller
+      buttonValue = digitalRead(BUTTON_PIN);  // Reads the status of the pin 2
+      if (buttonValue == HIGH)               //Logic to set the value of x to send to controller
       {
         x=1;
       }else
       {
         x=0;
       }
-  Peripheralsend=x;                             
-  SPDR = Peripheralsend;                           //Sends the x value to controller via SPDR 
+  peripheralSend=x;                             
+  SPDR = peripheralSend;                           //Sends the x value to controller via SPDR 
 
   delay(1000);
 
