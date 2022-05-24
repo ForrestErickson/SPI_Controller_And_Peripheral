@@ -10,7 +10,6 @@
    20220524 Get working with the SPI_CONTROLER sketch. Made function updateFromSPI().
 */
 
-
 //SPI PERIPHERAL (ARDUINO UNO)
 //SPI COMMUNICATION BETWEEN TWO ARDUINO UNOs
 //CIRCUIT DIGEST
@@ -23,14 +22,12 @@
   SS 10 Input
 */
 
-//Pramoth.T
 #include<SPI.h>
 #define LED_PIN 7
 #define BUTTON_PIN 2                          //Button to GND, 10K Resistor to +5V.
 
 volatile boolean isReceived_SPI;
 volatile byte peripheralReceived ;
-//volatile byte peripheralSend;
 
 void setup()
 {
@@ -74,7 +71,7 @@ void updateFromSPI() {
       //          Serial.println("Peripheral LED OFF");
     }
 
-    // Send some return data. Lets use a button for this example.
+    // Send return SPI data. Lets use a button for this example.
     peripheralSend = digitalRead(BUTTON_PIN);
     SPDR = peripheralSend;    //SPDR register of data to be shiffted out.
 
