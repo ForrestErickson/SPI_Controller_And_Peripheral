@@ -13,4 +13,23 @@ SPI_CONTROLLER and SPI_PERIPHERAL
    however it is not guaranteed to do so.
    20220524 Controler and Peripheral working.
    
-   
+
+## Hardware Notes, SPI Signal Names
+>  SPI Line Pin in Arduino, IO type  
+>  MOSI 11 or ICSP-4,  Output  
+>  MISO 12 or ICSP-1, Input  
+>  SCK 13 or ICSP-3, Output  
+>  SS 10,  Output  
+
+
+## Bus waveforms.  
+### CH1 is SCK, CH2 is MISO, CH3 is MOSI, and CH4 is nCS
+![SPI Bus ControlerButtonPressed](SPI_Buss_ControlerButtonPressed.png)  
+SPI Bus ControlerButtonPressed  
+![SPI_Buss_NoButtonsPressed](SPI_Buss_NoButtonsPressed.png)  
+SPI_Bus_NoButtonsPressed  
+![SPI_Buss_PeripherialButtonPressed](SPI_Buss_PeripherialButtonPressed.png)  
+SPI_Bus_PeripherialButtonPressed
+  
+  
+
