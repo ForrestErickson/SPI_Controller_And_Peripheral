@@ -3,29 +3,28 @@
    Modified by Forrest Lee Erickson 20220523
    Change to Controller/Peripheral termonology
    Change variable names for start with lowercase. Constants to uper case.
-   Controller Arduino Code:
+   Controller Arduino Code:   
+   License: Dedicated to the Public Domain
+   Warrenty: This program is designed to kill and render the earth uninhabitable,
+   however it is not guaranteed to do so.
+   20220524 Get working with the SPI_PERIPHERAL sketch.
 */
 
 //SPI CONTROLLER (ARDUINO UNO)
 //SPI COMMUNICATION BETWEEN TWO ARDUINO UNOs
 //CIRCUIT DIGEST
 
-/* Hardware Notes
+/* Hardware Notes Controller
    SPI Line Pin in Arduino
-  MOSI 11 or ICSP-4
-  MISO 12 or ICSP-1
-  SCK 13 or ICSP-3
-  SS 10
+  MOSI 11 or ICSP-4  Output
+  MISO 12 or ICSP-1 Input
+  SCK 13 or ICSP-3 Output
+  SS 10  Output
 */
 
 #include<SPI.h>                             //Library for SPI 
-#define LED_PIN 7                               //Add this LED + Resistor
-//#define BUTTON_PIN 2                          //Button to +5V, 10K Resistor to GND
-#define BUTTON_PIN 2                          //Button to GND, 10K Resistor to +5V.
-
-int buttonValue;
-int x;
-byte controllerSend, controlleReceive;
+#define LED_PIN 7                           //Add this LED + Resistor
+#define BUTTON_PIN 2                        //Button to GND, 10K Resistor to +5V.
 
 
 void setup (void)
@@ -45,22 +44,11 @@ void setup (void)
   delay(100);
 }// end setup()
 
-
 void loop(void)
 {
+  //Local variables
+  byte controllerSend, controlleReceive;
 
-  //  buttonValue = digitalRead(BUTTON_PIN);   //Reads the status of the pin 2
-  //  if (buttonValue == HIGH)               //Logic for Setting x value (To be sent to peripheral) depending upon input from pin 2
-  //    //  if (buttonValue == LOW)               //Logic for Setting x value (To be sent to peripheral) depending upon input from pin 2
-  //  {
-  //    x = 1;
-  //  }
-  //  else
-  //  {
-  //    x = 0;
-  //  }
-
-  //  x = buttonValue;
   controllerSend = digitalRead(BUTTON_PIN);
   Serial.print("SPI Controler: Button Status: ");
   Serial.print(controllerSend);
