@@ -40,7 +40,7 @@ void setup (void)
   //SPI.setClockDivider(SPI_CLOCK_DIV8);    //Sets clock for SPI communication at 8 (16/8=2Mhz)
   //SPI.setClockDivider(SPI_CLOCK_DIV16);    //SPI clock at 16MHz/N (16/16=1Mhz) where N={2,4,8,16,32,64,128}
   //SPI.setClockDivider(SPI_CLOCK_DIV64);    //SPI clock at 16MHz/N (16/64=250Khz) where N={2,4,8,16,32,64,128}
-  SPI.setClockDivider(SPI_CLOCK_DIV128);    //SPI clock at 16MHz/N (16/64=126Khz) where N={2,4,8,16,32,64,128}
+  SPI.setClockDivider(SPI_CLOCK_DIV128);    //SPI clock at 16MHz/N (16/128=125Khz) where N={2,4,8,16,32,64,128}
   pinMode(SS, OUTPUT);                    // Set nCS for output
   pinMode(MISO, INPUT);                   //Sets MISO as INPUT. Note MOSI must be set automaticaly
   SPI.begin();                            //Begins the SPI commnuication
