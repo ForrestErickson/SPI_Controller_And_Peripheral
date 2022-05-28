@@ -14,7 +14,7 @@ For a 20x4 character display disregarding any setup or cursor management bytes t
 
 ### Wiring of Solderless Bread Board.
 Image showing the wiring using solderless bread board and flying wires. Only skinny ground wire connecting each UNO to the solderless bread board.
-This kind of wiring is the opposite of what you want for signal integrity.
+This kind of wiring is the opposite of what you want for signal integrity.  
 <img src="SPI_Wirring_20220525_075047.jpg" alt="drawing" width="200"/>  
 In this image the SCK wire has a series resistor on the solderless bread board for experiments on controling rise time.  
 
