@@ -3,11 +3,12 @@
    Modified by Forrest Lee Erickson 20220523
    Change to Controller/Peripheral termonology
    Change variable names for start with lowercase. Constants to uper case.
-   Controller Arduino Code:   
+   Controller Arduino Code:
    License: Dedicated to the Public Domain
    Warrenty: This program is designed to kill and render the earth uninhabitable,
    however it is not guaranteed to do so.
    20220524 Get working with the SPI_PERIPHERAL sketch.
+   20220525 The SCK period is about 250nS as set up.
 */
 
 //SPI CONTROLLER (ARDUINO UNO)
@@ -35,10 +36,14 @@ void setup (void)
   pinMode(BUTTON_PIN, INPUT);               //Sets pin 2 as input
   pinMode(LED_PIN, OUTPUT);                   //Sets pin 7 as Output
 
+  //For SPI clock rates, see https://www.arduino.cc/reference/en/language/functions/communication/spi/setclockdivider/
+  //SPI.setClockDivider(SPI_CLOCK_DIV8);    //Sets clock for SPI communication at 8 (16/8=2Mhz)
+  //SPI.setClockDivider(SPI_CLOCK_DIV16);    //SPI clock at 16MHz/N (16/16=1Mhz) where N={2,4,8,16,32,64,128}
+  //SPI.setClockDivider(SPI_CLOCK_DIV64);    //SPI clock at 16MHz/N (16/64=250Khz) where N={2,4,8,16,32,64,128}
+  SPI.setClockDivider(SPI_CLOCK_DIV128);    //SPI clock at 16MHz/N (16/64=126Khz) where N={2,4,8,16,32,64,128}
+  pinMode(SS, OUTPUT);                    // Set nCS for output
+  pinMode(MISO, INPUT);                   //Sets MISO as INPUT. Note MOSI must be set automaticaly
   SPI.begin();                            //Begins the SPI commnuication
-  SPI.setClockDivider(SPI_CLOCK_DIV8);    //Sets clock for SPI communication at 8 (16/8=2Mhz)
-  pinMode(SS, OUTPUT);                 // Set nCS for output
-  pinMode(MISO, INPUT);                  //Sets MISO as INPUT for testing contention ONLY.
 
   digitalWrite(SS, HIGH);                 // Setting PeripheralSelect as HIGH (So controller doesnt connnect with peripheral)
   delay(100);
