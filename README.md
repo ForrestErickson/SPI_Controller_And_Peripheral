@@ -1,17 +1,17 @@
 # SPI_Controller_And_Peripheral
-A SPI Controller and Peripheral solution for Aduino UNO. Use two UNOs. One becomes the controller. One becomes the periperial. 
+A SPI Controller and Peripheral solution for Arduino UNO. Use two UNOs. One becomes the controller. One becomes the peripheral. 
 
 
 SPI_CONTROLLER and SPI_PERIPHERAL
    From: https://circuitdigest.com/microcontroller-projects/arduino-spi-communication-tutorial
    Modified by Forrest Lee Erickson 20220523  
-   Change to Controller/Peripheral termonology  
+   Change to Controller/Peripheral terminology  
    Change variable names for start with lowercase. Constants to uper case.  
    Controller Arduino Code:     
    License: Dedicated to the Public Domain  
-   Warrenty: This program is designed to kill you and render the earth uninhabitable,
+   Warranty: This program is designed to kill you and render the earth uninhabitable,
    however it is not guaranteed to do so.  
-   20220524 Controler and Peripheral working.
+   20220524 Controller and Peripheral working.
    
 
 ## Hardware Notes, SPI Signal Names
