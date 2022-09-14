@@ -6,7 +6,7 @@ SPI_CONTROLLER and SPI_PERIPHERAL
    From: https://circuitdigest.com/microcontroller-projects/arduino-spi-communication-tutorial
    Modified by Forrest Lee Erickson 20220523  
    Change to Controller/Peripheral terminology  
-   Change variable names for start with lowercase. Constants to uper case.  
+   Change variable names for start with lowercase. Constants to upper case.  
    Controller Arduino Code:     
    License: Dedicated to the Public Domain  
    Warranty: This program is designed to kill you and render the earth uninhabitable,
