@@ -8,6 +8,7 @@
    Warrenty: This program is designed to kill and render the earth uninhabitable,
    however it is not guaranteed to do so.
    20220524 Get working with the SPI_CONTROLER sketch. Made function updateFromSPI().
+   20220925 Changes for GPAD Version 1 PCB.  SS on pin 7 and LED_PIN on D3.
 */
 
 //SPI PERIPHERAL (ARDUINO UNO)
@@ -22,9 +23,20 @@
   SS 10 Input
 */
 
-#include<SPI.h>
+#define GPAD_VERSION1
+
+#ifdef GPAD_VERSION1 //The Version 1 PCB.
+#define SS 7                                // nCS aka /SS Input on GPAD Version 1 PCB.
+#define LED_PIN PD3                         // for GPAD LIGHT0
+#define BUTTON_PIN PD2                      //GPAD Button to GND,  10K Resistor to +5V.
+
+#else //The proof of concept wiring.
 #define LED_PIN 7
 #define BUTTON_PIN 2                          //Button to GND, 10K Resistor to +5V.
+
+#endif
+
+#include<SPI.h>
 
 volatile boolean isReceived_SPI;
 volatile byte peripheralReceived ;
@@ -83,4 +95,19 @@ void updateFromSPI() {
 void loop()
 {
   updateFromSPI();
+
+//Check mute button for press.
+    if (digitalRead(BUTTON_PIN) != HIGH) {
+  //  tone(TONE_PIN, BUZZER_TEST_FREQ);
+    Serial.println("Button pressed.");
+//    for (int i = 0; i < 5; i++) {
+//      digitalWrite(LIGHT[i], HIGH);
+//    }
+  } else {
+//    noTone(TONE_PIN);
+//    for (int i = 0; i < 5; i++) {
+//      digitalWrite(LIGHT[i], LOW);
+//    }
+  }
+  
 }//end loop()
