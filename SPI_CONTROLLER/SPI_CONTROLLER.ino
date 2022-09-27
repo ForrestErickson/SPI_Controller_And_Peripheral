@@ -9,6 +9,7 @@
    however it is not guaranteed to do so.
    20220524 Get working with the SPI_PERIPHERAL sketch.
    20220525 The SCK period is about 250nS as set up.
+   20220927 Change for button to have internal pull up.
 */
 
 //SPI CONTROLLER (ARDUINO UNO)
@@ -33,7 +34,7 @@ void setup (void)
   Serial.begin(115200);                   //Starts Serial Communication at Baud Rate 115200
   delay(500);
   Serial.println("Starting SPI Controller.");
-  pinMode(BUTTON_PIN, INPUT);               //Sets pin 2 as input
+  pinMode(BUTTON_PIN, INPUT_PULLUP);               //Sets pin 2 as input
   pinMode(LED_PIN, OUTPUT);                   //Sets pin 7 as Output
 
   //For SPI clock rates, see https://www.arduino.cc/reference/en/language/functions/communication/spi/setclockdivider/

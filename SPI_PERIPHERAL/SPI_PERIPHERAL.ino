@@ -9,6 +9,7 @@
    however it is not guaranteed to do so.
    20220524 Get working with the SPI_CONTROLER sketch. Made function updateFromSPI().
    20220925 Changes for GPAD Version 1 PCB.  SS on pin 7 and LED_PIN on D3.
+   20220927 Change back for GPAD nCS on Pin 10
 */
 
 //SPI PERIPHERAL (ARDUINO UNO)
@@ -26,7 +27,7 @@
 #define GPAD_VERSION1
 
 #ifdef GPAD_VERSION1 //The Version 1 PCB.
-#define SS 7                                // nCS aka /SS Input on GPAD Version 1 PCB.
+//#define SS 7                                // nCS aka /SS Input on GPAD Version 1 PCB.
 #define LED_PIN PD3                         // for GPAD LIGHT0
 #define BUTTON_PIN PD2                      //GPAD Button to GND,  10K Resistor to +5V.
 
@@ -46,6 +47,8 @@ void setup()
   Serial.begin(115200);
   delay(500);
   Serial.println("Starting SPI Peripheral.");
+  Serial.print("Pin for SS: ");
+  Serial.println(SS);
 
   pinMode(BUTTON_PIN, INPUT);              // Setting pin 2 as INPUT
   pinMode(LED_PIN, OUTPUT);                // Setting pin 7 as OUTPUT
