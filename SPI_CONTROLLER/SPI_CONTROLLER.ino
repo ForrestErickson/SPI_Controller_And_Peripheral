@@ -9,22 +9,28 @@
    however it is not guaranteed to do so.
    20220524 Get working with the SPI_PERIPHERAL sketch.
    20220525 The SCK period is about 250nS as set up.
+   20220927 Change for button to have internal pull up.  Add Resistor and LED from pins 7 to 6.
 */
 
 //SPI CONTROLLER (ARDUINO UNO)
 //SPI COMMUNICATION BETWEEN TWO ARDUINO UNOs
 //CIRCUIT DIGEST
 
-/* Hardware Notes Controller
+/* Hardware Notes, Controller
    SPI Line Pin in Arduino
   MOSI 11 or ICSP-4  Output
   MISO 12 or ICSP-1 Input
   SCK 13 or ICSP-3 Output
   SS 10  Output
+
+  330 Ohm resistor and LED from pin 7 to pin 6. 
+  LED will be high untill the peripheral button is pressed.
+  
 */
 
 #include<SPI.h>                             //Library for SPI 
 #define LED_PIN 7                           //Add this LED + Resistor
+#define LED_CATHODE 6                        //A pin to sink LED current
 #define BUTTON_PIN 2                        //Button to GND, 10K Resistor to +5V.
 
 
@@ -33,8 +39,11 @@ void setup (void)
   Serial.begin(115200);                   //Starts Serial Communication at Baud Rate 115200
   delay(500);
   Serial.println("Starting SPI Controller.");
-  pinMode(BUTTON_PIN, INPUT);               //Sets pin 2 as input
+  pinMode(BUTTON_PIN, INPUT_PULLUP);               //Sets pin 2 as input
   pinMode(LED_PIN, OUTPUT);                   //Sets pin 7 as Output
+
+  pinMode(LED_CATHODE, OUTPUT);               //Sets pin 6 as Output
+  digitalWrite(LED_CATHODE, LOW);             //Sets pin 6 to sink LED current
 
   //For SPI clock rates, see https://www.arduino.cc/reference/en/language/functions/communication/spi/setclockdivider/
   //SPI.setClockDivider(SPI_CLOCK_DIV8);    //Sets clock for SPI communication at 8 (16/8=2Mhz)
